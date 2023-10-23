@@ -3,11 +3,11 @@
 
 ## Atualize os seus dados
 
-- Nome:
-- Matrícula:
-- Curso:
-- Semestre/Ano correntes:
-- Link para o seu GitHub:
+- Nome: Filipe Augusto Santos de Moura
+- Matrícula: 20.2.8079
+- Curso: Sistemas de Informação
+- Semestre/Ano correntes: 2023/2
+- Link para o seu GitHub: [Filipey](https://github.com/Filipey)
 
 ## [Projeto final:](./Projeto/README.md)
 
