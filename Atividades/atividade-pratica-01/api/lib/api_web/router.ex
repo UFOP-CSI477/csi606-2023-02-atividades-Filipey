@@ -7,6 +7,7 @@ defmodule ApiWeb.Router do
 
   scope "/api", ApiWeb do
     pipe_through :api
+    resources "/states", StatesController, only: [:create, :update, :delete, :show]
   end
 
   # Enable LiveDashboard in development

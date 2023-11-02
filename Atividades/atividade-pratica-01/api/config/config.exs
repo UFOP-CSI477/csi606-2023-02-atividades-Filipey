@@ -13,7 +13,7 @@ config :api,
 
 # Configures the endpoint
 config :api, ApiWeb.Endpoint,
-  url: [host: "127.0.0.1"],
+  url: [host: System.get_env("DATABASE_HOST", "localhost")],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
     formats: [json: ApiWeb.ErrorJSON],
@@ -33,9 +33,7 @@ config :phoenix, :json_library, Jason
 # Configured table timestamps
 config :api, Api.Repo,
   migration_timestamps: [
-    type: :utc_datetime,
-    inserted_at: :created_at,
-    updated_at: :updated_at
+    type: :utc_datetime
   ]
 
 config :api, Api.Repo, migration_primary_key: [name: :id, type: :bigserial]
