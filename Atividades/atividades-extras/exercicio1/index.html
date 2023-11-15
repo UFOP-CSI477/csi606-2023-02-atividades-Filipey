@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://cdn.jsdelivr.net/npm/postcss@8.3.11/dist/postcss.min.css");
+    </style>
+    <title>Formulário estilizado - Tailwind</title>
+  </head>
+
+  <body class="min-h-screen bg-gray-100 p-0 sm:p-12">
+    <div
+      class="mx-auto max-w-md px-6 py-12 bg-sky-500 border-0 shadow-lg sm:rounded-3xl"
+    >
+      <h1 class="text-2xl font-bold mb-8">
+        Formulário de cadastro utilizando o Framework CSS
+        <span
+          class="transition ease-in-out duration-300 text-blue-500 hover:text-blue-700"
+          >Tailwind</span
+        >
+      </h1>
+      <form id="form" method="post">
+        <div class="flex justify-between">
+          <div class="relative z-0 w-full mb-5">
+            <label class="text-sm absolute pb-4 font-semibold" for="first_name"
+              >Primeiro Nome</label
+            >
+            <input
+              class="pt-6 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+              type="text"
+              id="first_name"
+              name="first_name"
+            />
+          </div>
+          <div class="mx-4"></div>
+          <div class="relative z-0 w-full mb-5 font-semibold">
+            <label class="text-sm absolute pb-4" for="last_name"
+              >Último nome</label
+            >
+            <input
+              class="pt-6 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+              type="text"
+              id="last_name"
+              name="last_name"
+            />
+          </div>
+        </div>
+
+        <div class="flex justify-between">
+          <div class="relative z-0 w-full mb-5">
+            <label class="text-sm absolute pb-4 font-semibold" for="password"
+              >Senha</label
+            >
+            <input
+              class="pt-6 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+              type="password"
+              id="password"
+              name="password"
+            />
+          </div>
+
+          <div class="mx-4"></div>
+
+          <div class="relative z-0 w-full mb-5">
+            <label
+              class="text-sm absolute pb-4 font-semibold"
+              for="repeat_password"
+              >Repita a senha</label
+            >
+            <input
+              class="pt-6 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+              type="password"
+              id="repeat_password"
+              name="repeat_password"
+            />
+          </div>
+        </div>
+
+        <div class="relative z-0 w-full mb-5">
+          <label class="text-sm absolute pb-4 font-semibold" for="born_date"
+            >Data de nascimento</label
+          >
+          <input
+            class="pt-6 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+            type="date"
+            id="born_date"
+            name="born_date"
+          />
+        </div>
+
+        <div class="relative z-0 w-full mb-5">
+          <label class="text-md font-semibold absolute pb-4" for="gender"
+            >Gênero</label
+          >
+          <div class="flex-col items-center justify-center py-4">
+            <div class="flex mt-4 items-center justify-start space-x-2">
+              <input
+                type="radio"
+                id="f_gender"
+                name="gender"
+                value="Feminino"
+              />
+              <label for="f_gender">Feminino</label>
+            </div>
+            <div class="flex mt-2 items-center justify-start space-x-2">
+              <input
+                type="radio"
+                id="m_gender"
+                name="gender"
+                value="Masculino"
+              />
+              <label for="m_gender">Masculino</label>
+            </div>
+            <div class="flex mt-2 items-center justify-start space-x-2">
+              <input type="radio" id="o_gender" name="gender" value="Outro" />
+              <label for="o_gender">Outro</label>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <button
+            class="font-bold text-white rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 transitin ease-in-out duration-300"
+            type="submit"
+          >
+            Enviar
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+
+<script>
+  document.getElementById("form").addEventListener("submit", e => {
+    e.preventDefault()
+    alert("Formulário enviado =)")
+  })
+</script>
