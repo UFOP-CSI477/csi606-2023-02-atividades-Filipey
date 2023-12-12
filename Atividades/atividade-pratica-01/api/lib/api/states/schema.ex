@@ -16,5 +16,7 @@ defmodule Api.States.Schema do
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:acronym, is: 2)
+    |> unique_constraint(:name)
+    |> unique_constraint(:acronym)
   end
 end
