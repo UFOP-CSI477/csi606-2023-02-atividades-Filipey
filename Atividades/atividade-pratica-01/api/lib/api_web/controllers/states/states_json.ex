@@ -1,4 +1,10 @@
 defmodule ApiWeb.StatesJSON do
+  def all(%{states: states}) do
+    %{
+      data: states
+    }
+  end
+
   def create(%{state: state}) do
     %{
       message: "Estado criado com sucesso!",

@@ -21,6 +21,14 @@ defmodule ApiWeb.StatesController do
     end
   end
 
+  def index(conn, _) do
+    with {:ok, states} <- States.all() do
+      conn
+      |> put_status(:ok)
+      |> render(:all, states: states)
+    end
+  end
+
   def show(conn, %{"id" => id}) do
     with {:ok, %Schema{} = state} <- States.get(id) do
       conn
