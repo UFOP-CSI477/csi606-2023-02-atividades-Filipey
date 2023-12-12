@@ -11,10 +11,21 @@ defmodule Api.States.Schema do
     timestamps()
   end
 
-  def changeset(state \\ %__MODULE__{}, params) do
+  def changeset(params) do
+    %__MODULE__{}
+    |> cast(params, @required_params)
+    |> do_validations(@required_params)
+  end
+
+  def changeset(state, params) do
     state
     |> cast(params, @required_params)
-    |> validate_required(@required_params)
+    |> do_validations(@required_params)
+  end
+
+  defp do_validations(changeset, fields) do
+    changeset
+    |> validate_required(fields)
     |> validate_length(:acronym, is: 2)
     |> unique_constraint(:name)
     |> unique_constraint(:acronym)

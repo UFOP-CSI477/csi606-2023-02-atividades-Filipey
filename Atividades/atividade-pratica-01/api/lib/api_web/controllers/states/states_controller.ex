@@ -20,4 +20,12 @@ defmodule ApiWeb.StatesController do
       |> render(:show, state: state)
     end
   end
+
+  def update(conn, params) do
+    with {:ok, %Schema{} = state} <- States.update(params) do
+      conn
+      |> put_status(:ok)
+      |> render(:update, state: state)
+    end
+  end
 end
