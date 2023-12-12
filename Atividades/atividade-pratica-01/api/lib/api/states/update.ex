@@ -3,8 +3,6 @@ defmodule Api.States.Update do
   alias Api.States.Schema
 
   def call(%{"id" => id} = params) do
-    IO.inspect(params)
-
     case Repo.get(Schema, id) do
       nil -> {:error, :not_found}
       state -> update(state, params)

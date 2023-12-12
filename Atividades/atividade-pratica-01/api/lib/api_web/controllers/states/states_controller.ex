@@ -13,6 +13,14 @@ defmodule ApiWeb.StatesController do
     end
   end
 
+  def delete(conn, %{"id" => id}) do
+    with {:ok, %Schema{} = state} <- States.delete(id) do
+      conn
+      |> put_status(:ok)
+      |> render(:delete, state: state)
+    end
+  end
+
   def show(conn, %{"id" => id}) do
     with {:ok, %Schema{} = state} <- States.get(id) do
       conn
