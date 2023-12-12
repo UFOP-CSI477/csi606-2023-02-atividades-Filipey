@@ -1,4 +1,4 @@
-defmodule ApiWeb.StatesJSON do
+defmodule ApiWeb.States.StatesJSON do
   def all(%{states: states}) do
     %{
       data: states

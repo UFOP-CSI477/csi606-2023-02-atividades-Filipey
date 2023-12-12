@@ -1,4 +1,4 @@
-defmodule ApiWeb.StatesController do
+defmodule ApiWeb.States.StatesController do
   use ApiWeb, :controller
   alias Api.States
   alias States.Schema

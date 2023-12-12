@@ -4,7 +4,7 @@ defmodule ApiWeb.ErrorJSON do
   end
 
   def error(%{status: :not_found}) do
-    %{status: :not_found, message: "Estado não encontrado."}
+    %{status: :not_found, message: "Entidade não encontrada."}
   end
 
   def error(%{changeset: changeset}) do
