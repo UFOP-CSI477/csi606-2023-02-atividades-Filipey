@@ -1,15 +1,16 @@
-defmodule Api.States.Schema do
-  alias Api.Cities
+defmodule Api.Donations.Schema do
+  alias Api.CollectPlaces
+  alias Api.Persons
   use Ecto.Schema
   import Ecto.Changeset
 
-  @required_params [:name, :acronym]
+  @required_params [:date]
 
-  schema "states" do
-    field :name, :string
-    field :acronym, :string
+  schema "donations" do
+    field :date, :date
 
-    has_many :cities, Cities.Schema, foreign_key: :id
+    belongs_to :person, Persons.Schema
+    belongs_to :collect_place, CollectPlaces.Schema
     timestamps()
   end
 
@@ -28,8 +29,6 @@ defmodule Api.States.Schema do
   defp do_validations(changeset, fields) do
     changeset
     |> validate_required(fields)
-    |> validate_length(:acronym, is: 2)
-    |> unique_constraint(:name)
-    |> unique_constraint(:acronym)
+    |> unique_constraint(:rg)
   end
 end

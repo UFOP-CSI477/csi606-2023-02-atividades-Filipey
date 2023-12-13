@@ -1,4 +1,5 @@
 defmodule Api.BloodTypes.Schema do
+  alias Api.Persons
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -7,6 +8,8 @@ defmodule Api.BloodTypes.Schema do
   schema "blood_types" do
     field :type, :string
     field :factor, :string
+
+    has_many :persons, Persons.Schema, foreign_key: :id
 
     timestamps()
   end
