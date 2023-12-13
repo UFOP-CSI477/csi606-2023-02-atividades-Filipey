@@ -10,7 +10,9 @@ defmodule ApiWeb.Router do
   scope "/api", ApiWeb do
     pipe_through :api
     resources "/states", StatesController, only: [:create, :update, :delete, :show, :index]
-    resources "/blood_types", BloodTypesController, only: [:create, :update, :show, :index]
+
+    resources "/blood_types", BloodTypesController,
+      only: [:create, :update, :delete, :show, :index]
   end
 
   if Application.compile_env(:api, :dev_routes) do
