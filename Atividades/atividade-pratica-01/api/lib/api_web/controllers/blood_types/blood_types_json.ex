@@ -1,5 +1,5 @@
 defmodule ApiWeb.BloodTypes.BloodTypesJSON do
-  def all(%{blood_types: blood_types}) do
+  def all(%{data: blood_types}) do
     %{
       data: blood_types
     }
@@ -28,12 +28,6 @@ defmodule ApiWeb.BloodTypes.BloodTypesJSON do
         inserted_at: blood_type.inserted_at,
         updated_at: blood_type.updated_at
       }
-    }
-  end
-
-  def index(%{data: blood_types}) do
-    %{
-      data: blood_types
     }
   end
 

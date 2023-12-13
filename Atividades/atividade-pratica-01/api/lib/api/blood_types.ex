@@ -1,9 +1,9 @@
 defmodule Api.BloodTypes do
   alias Api.BloodTypes.Create
-  alias Api.States.Get
-  alias Api.States.Update
-  alias Api.States.Delete
-  alias Api.States.All
+  alias Api.BloodTypes.Get
+  alias Api.BloodTypes.Update
+  alias Api.BloodTypes.Delete
+  alias Api.BloodTypes.All
 
   defdelegate create(params), to: Create, as: :call
   defdelegate get(id), to: Get, as: :call

@@ -25,7 +25,7 @@ defmodule ApiWeb.BloodTypes.BloodTypesController do
     with {:ok, blood_types} <- BloodTypes.all() do
       conn
       |> put_status(:ok)
-      |> render(:all, blood_types: blood_types)
+      |> render(:all, data: blood_types)
     end
   end
 
