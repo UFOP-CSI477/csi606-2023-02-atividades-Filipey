@@ -53,4 +53,10 @@ defmodule ApiWeb.BloodTypes.BloodTypesJSON do
       }
     }
   end
+
+  def persons_with_blood(%{persons: persons}) do
+    %{
+      data: persons
+    }
+  end
 end

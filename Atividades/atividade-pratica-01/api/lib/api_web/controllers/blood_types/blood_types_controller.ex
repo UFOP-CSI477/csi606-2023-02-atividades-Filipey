@@ -21,6 +21,14 @@ defmodule ApiWeb.BloodTypes.BloodTypesController do
     end
   end
 
+  def persons_with_blood_id(conn, %{"id" => id}) do
+    with {:ok, persons} <- BloodTypes.find_persons_with_blood_type(id) do
+      conn
+      |> put_status(:ok)
+      |> render(:persons_with_blood, persons: persons)
+    end
+  end
+
   def index(conn, _) do
     with {:ok, blood_types} <- BloodTypes.all() do
       conn

@@ -5,7 +5,7 @@ defmodule Api.BloodTypes.All do
 
   def call() do
     Repo.all(from(Schema))
-    |> Enum.map(fn blood_type -> conver_schema_to_map(blood_type) end)
+    |> Enum.map(fn blood_type -> convert_schema_to_map(blood_type) end)
     |> format_result()
   end
 
@@ -14,7 +14,7 @@ defmodule Api.BloodTypes.All do
     |> Tuple.append(blood_types)
   end
 
-  def conver_schema_to_map(%Schema{} = struct) do
+  def convert_schema_to_map(%Schema{} = struct) do
     %{
       id: struct.id,
       type: struct.type,

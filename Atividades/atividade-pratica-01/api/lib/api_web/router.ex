@@ -13,6 +13,8 @@ defmodule ApiWeb.Router do
 
     resources "/blood_types", BloodTypesController,
       only: [:create, :update, :delete, :show, :index]
+
+    get "/blood_types/persons/:id", BloodTypesController, :persons_with_blood_id
   end
 
   if Application.compile_env(:api, :dev_routes) do
