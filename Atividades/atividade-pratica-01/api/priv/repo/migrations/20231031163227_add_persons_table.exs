@@ -10,7 +10,7 @@ defmodule Api.Repo.Migrations.AddPersonsTable do
       add :rg, :string, null: false
 
       add :city_id, references(:cities)
-      add :type_id, references(:blood_types)
+      add :blood_type_id, references(:blood_types)
 
       timestamps()
     end
