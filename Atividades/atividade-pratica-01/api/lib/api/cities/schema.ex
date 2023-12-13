@@ -23,8 +23,8 @@ defmodule Api.Cities.Schema do
     |> do_validations(@required_params)
   end
 
-  def changeset(state, params) do
-    state
+  def changeset(city, params) do
+    city
     |> cast(params, @required_params)
     |> do_validations(@required_params)
   end
