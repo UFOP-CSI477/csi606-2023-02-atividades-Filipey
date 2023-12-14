@@ -8,8 +8,8 @@ defmodule Api.Donations.Schema do
 
   schema "donations" do
     field :date, :date
-    belongs_to :person, Persons.Schema
-    belongs_to :collect_place, CollectPlaces.Schema
+    belongs_to :person, Persons.Schema, foreign_key: :person_id
+    belongs_to :collect_place, CollectPlaces.Schema, foreign_key: :collect_place_id
     timestamps()
   end
 
