@@ -5,7 +5,7 @@ defmodule Api.Cities.Schema do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @required_params [:name]
+  @required_params [:name, :state_id]
 
   schema "cities" do
     field :name, :string

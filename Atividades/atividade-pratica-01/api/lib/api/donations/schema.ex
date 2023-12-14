@@ -4,7 +4,7 @@ defmodule Api.Donations.Schema do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @required_params [:date]
+  @required_params [:date, :person_id, :collect_place_id]
 
   schema "donations" do
     field :date, :date
@@ -28,6 +28,5 @@ defmodule Api.Donations.Schema do
   defp do_validations(changeset, fields) do
     changeset
     |> validate_required(fields)
-    |> unique_constraint(:rg)
   end
 end
