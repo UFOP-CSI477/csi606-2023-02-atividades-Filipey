@@ -37,6 +37,14 @@ defmodule ApiWeb.States.StatesController do
     end
   end
 
+  def get_by_name(conn, %{"name" => name}) do
+    with {:ok, %Schema{} = state} <- States.get_by_name(name) do
+      conn
+      |> put_status(:ok)
+      |> render(:show, state: state)
+    end
+  end
+
   def update(conn, params) do
     with {:ok, %Schema{} = state} <- States.update(params) do
       conn
