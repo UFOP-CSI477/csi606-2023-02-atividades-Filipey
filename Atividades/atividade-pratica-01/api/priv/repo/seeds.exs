@@ -187,11 +187,11 @@ blood_types = [
 
 people_by_city = [
   %{
-    name: "Lucas Lima",
+    name: "Lucas Limoeiro",
     street: "Rua Cariacica",
     number: 393,
     complement: "Casa 43",
-    rg: "3333444",
+    rg: "07612310",
     city: "Cariacica"
   },
 
@@ -201,7 +201,7 @@ people_by_city = [
     street: "Avenida Serra",
     number: 404,
     complement: "Apto 44",
-    rg: "4444555",
+    rg: "91283911",
     city: "Serra"
   },
 
@@ -211,7 +211,7 @@ people_by_city = [
     street: "Rua Linhares",
     number: 515,
     complement: "Casa 45",
-    rg: "5555666",
+    rg: "98127312",
     city: "Sinop"
   },
 
@@ -221,7 +221,7 @@ people_by_city = [
     street: "Avenida Goiânia",
     number: 181,
     complement: "Apto 46",
-    rg: "6666777",
+    rg: "81723112",
     city: "Rondonópolis"
   },
 
@@ -231,7 +231,7 @@ people_by_city = [
     street: "Rua Aparecida",
     number: 292,
     complement: "Casa 47",
-    rg: "7777888",
+    rg: "72611213",
     city: "São Luís"
   },
 
@@ -241,7 +241,7 @@ people_by_city = [
     street: "Avenida Anápolis",
     number: 303,
     complement: "Apto 48",
-    rg: "8888999",
+    rg: "01823114",
     city: "Rio Verde"
   },
 
@@ -251,7 +251,7 @@ people_by_city = [
     street: "Rua Rio Verde",
     number: 414,
     complement: "Casa 49",
-    rg: "9999000",
+    rg: "01283815",
     city: "Goiânia"
   },
 
@@ -261,7 +261,7 @@ people_by_city = [
     street: "Avenida Luziânia",
     number: 525,
     complement: "Apto 50",
-    rg: "0000111",
+    rg: "59823116",
     city: "Vila Velha"
   },
 
@@ -271,7 +271,7 @@ people_by_city = [
     street: "Rua São Luís",
     number: 191,
     complement: "Casa 51",
-    rg: "1111222",
+    rg: "19291231",
     city: "Vitória"
   },
 
@@ -281,7 +281,7 @@ people_by_city = [
     street: "Avenida Imperatriz",
     number: 202,
     complement: "Apto 52",
-    rg: "2222333",
+    rg: "29731299",
     city: "Gama"
   },
 
@@ -291,7 +291,7 @@ people_by_city = [
     street: "Rua São José",
     number: 313,
     complement: "Casa 53",
-    rg: "3333444",
+    rg: "38473231",
     city: "Parintins"
   },
 
@@ -301,7 +301,7 @@ people_by_city = [
     street: "Avenida Timon",
     number: 424,
     complement: "Apto 54",
-    rg: "4444555",
+    rg: "01293119",
     city: "Santana"
   },
 
@@ -311,7 +311,7 @@ people_by_city = [
     street: "Rua Caxias",
     number: 535,
     complement: "Casa 55",
-    rg: "5555666",
+    rg: "34973520",
     city: "Feijó"
   },
 
@@ -321,7 +321,7 @@ people_by_city = [
     street: "Avenida Cuiabá",
     number: 201,
     complement: "Apto 56",
-    rg: "6666777",
+    rg: "12563121",
     city: "Maceió"
   },
 
@@ -331,7 +331,7 @@ people_by_city = [
     street: "Rua Várzea Grande",
     number: 312,
     complement: "Casa 57",
-    rg: "7777888",
+    rg: "932742392",
     city: "Rio Branco"
   },
 
@@ -341,7 +341,7 @@ people_by_city = [
     street: "Avenida Rondonópolis",
     number: 423,
     complement: "Apto 58",
-    rg: "8888999",
+    rg: "12836122",
     city: "Vitória da Conquista"
   },
 
@@ -351,7 +351,7 @@ people_by_city = [
     street: "Rua Sinop",
     number: 534,
     complement: "Casa 59",
-    rg: "9999000",
+    rg: "81729312",
     city: "Fortaleza"
   },
 
@@ -361,7 +361,7 @@ people_by_city = [
     street: "Avenida Tangará",
     number: 645,
     complement: "Apto 60",
-    rg: "0000111",
+    rg: "86328325",
     city: "Campinas"
   },
 
@@ -371,7 +371,7 @@ people_by_city = [
     street: "Rua Campo Grande",
     number: 211,
     complement: "Casa 61",
-    rg: "1111222",
+    rg: "92347292",
     city: "Palmas"
   },
 
@@ -381,7 +381,7 @@ people_by_city = [
     street: "Avenida Dourados",
     number: 322,
     complement: "Apto",
-    rg: "9381711",
+    rg: "93817112",
     city: "São Paulo"
   },
   %{
@@ -389,7 +389,7 @@ people_by_city = [
     street: "Rua Acreana",
     number: 123,
     complement: "Apto 1",
-    rg: "1234567",
+    rg: "12345671",
     city: "Três Lagoas"
   },
 
@@ -399,7 +399,7 @@ people_by_city = [
     street: "Avenida Rio",
     number: 456,
     complement: "Casa 2",
-    rg: "7654321",
+    rg: "76543212",
     city: "Corumbá"
   },
 
@@ -409,7 +409,7 @@ people_by_city = [
     street: "Rua Amazonas",
     number: 789,
     complement: "Casa 3",
-    rg: "9876543",
+    rg: "98765435",
     city: "Ponta Porã"
   },
 
@@ -419,7 +419,7 @@ people_by_city = [
     street: "Avenida dos Rios",
     number: 321,
     complement: "Apto 4",
-    rg: "3456789",
+    rg: "34567897",
     city: "Belo Horizonte"
   },
 
@@ -429,7 +429,7 @@ people_by_city = [
     street: "Rua Madeira",
     number: 101,
     complement: "Apto 5",
-    rg: "2345678",
+    rg: "23456783",
     city: "Uberlândia"
   },
 
@@ -439,7 +439,7 @@ people_by_city = [
     street: "Avenida das Flores",
     number: 202,
     complement: "Casa 6",
-    rg: "8765432",
+    rg: "87654321",
     city: "Contagem"
   },
 
@@ -449,7 +449,7 @@ people_by_city = [
     street: "Rua Verde",
     number: 303,
     complement: "Casa 7",
-    rg: "8765432",
+    rg: "87654320",
     city: "Juiz de Fora"
   },
 
@@ -459,7 +459,7 @@ people_by_city = [
     street: "Avenida das Árvores",
     number: 404,
     complement: "Apto 8",
-    rg: "2345678",
+    rg: "23456788",
     city: "Betim"
   },
 
@@ -469,7 +469,7 @@ people_by_city = [
     street: "Rua Tarauacá",
     number: 505,
     complement: "Apto 9",
-    rg: "3456789",
+    rg: "34567896",
     city: "Belém"
   },
 
@@ -479,7 +479,7 @@ people_by_city = [
     street: "Avenida do Sol",
     number: 606,
     complement: "Casa 10",
-    rg: "9876543",
+    rg: "98765434",
     city: "Ananindeua"
   },
 
@@ -489,7 +489,7 @@ people_by_city = [
     street: "Rua das Palmeiras",
     number: 111,
     complement: "Casa 11",
-    rg: "1111111",
+    rg: "11111110",
     city: "Santarém"
   },
 
@@ -499,7 +499,7 @@ people_by_city = [
     street: "Avenida do Mar",
     number: 222,
     complement: "Apto 12",
-    rg: "2222222",
+    rg: "22222221",
     city: "Marabá"
   },
 
@@ -509,7 +509,7 @@ people_by_city = [
     street: "Rua da Natureza",
     number: 333,
     complement: "Casa 13",
-    rg: "3333333",
+    rg: "33333332",
     city: "Castanhal"
   },
 
@@ -519,7 +519,7 @@ people_by_city = [
     street: "Avenida do Norte",
     number: 444,
     complement: "Apto 14",
-    rg: "4444444",
+    rg: "44444443",
     city: "João Pessoa"
   },
 
@@ -529,7 +529,7 @@ people_by_city = [
     street: "Rua da Montanha",
     number: 555,
     complement: "Casa 15",
-    rg: "5555555",
+    rg: "55555554",
     city: "Campina Grande"
   },
 
@@ -539,7 +539,7 @@ people_by_city = [
     street: "Avenida dos Rios",
     number: 666,
     complement: "Apto 16",
-    rg: "6666666",
+    rg: "66666665",
     city: "Santa Rita"
   },
 
@@ -549,7 +549,7 @@ people_by_city = [
     street: "Rua das Águas",
     number: 777,
     complement: "Casa 17",
-    rg: "7777777",
+    rg: "77777776",
     city: "Patos"
   },
 
@@ -559,7 +559,7 @@ people_by_city = [
     street: "Avenida das Flores",
     number: 888,
     complement: "Apto 18",
-    rg: "8888888",
+    rg: "88888887",
     city: "Bayeux"
   },
 
@@ -569,7 +569,7 @@ people_by_city = [
     street: "Rua das Palmeiras",
     number: 999,
     complement: "Casa 19",
-    rg: "9999999",
+    rg: "99999998",
     city: "Curitiba"
   },
 
@@ -1223,6 +1223,7 @@ end)
 people_by_city
 |> Enum.each(fn person ->
   city = Repo.get_by(Cities.Schema, name: person.city)
+  state = Repo.get(States.Schema, city.state_id)
   random_blood_type_id = :rand.uniform(8)
   blood_type = Repo.get!(BloodTypes.Schema, random_blood_type_id)
 
@@ -1231,7 +1232,7 @@ people_by_city
     street: person.street,
     number: person.number,
     complement: person.complement,
-    rg: person.rg,
+    rg: state.acronym <> "-" <> String.slice(person.rg, 0, 9),
     city: city,
     blood_type: blood_type
   })
