@@ -5,7 +5,7 @@ defmodule Api.Persons.Schema do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @required_params [:name, :street, :number, :complement, :rg]
+  @required_params [:name, :street, :number, :complement, :rg, :city_id, :blood_type_id]
   @update_params [:name, :street, :complement, :number]
 
   schema "persons" do

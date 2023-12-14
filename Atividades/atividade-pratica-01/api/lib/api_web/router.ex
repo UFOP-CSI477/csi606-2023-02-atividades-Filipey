@@ -1,6 +1,7 @@
 defmodule ApiWeb.Router do
   alias BloodTypes.BloodTypesController
   alias States.StatesController
+  alias Persons.PersonsController
   use ApiWeb, :router
 
   pipeline :api do
@@ -16,6 +17,9 @@ defmodule ApiWeb.Router do
       only: [:create, :update, :delete, :show, :index]
 
     get "/blood_types/persons/:id", BloodTypesController, :persons_with_blood_id
+
+    resources "/persons", PersonsController, only: [:create, :update, :delete, :show, :index]
+    get "/persons/by_name/:name", PersonsController, :get_by_name
   end
 
   if Application.compile_env(:api, :dev_routes) do
