@@ -1,19 +1,10 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Api.Repo.insert!(%Api.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
 alias Api.Repo
 alias Api.States
 alias Api.Cities
 alias Api.BloodTypes
 alias Api.Persons
+alias Api.CollectPlaces
+alias Api.Donations
 
 states = [
   %{name: "Acre", acronym: "AC"},
@@ -953,6 +944,268 @@ people_by_city = [
   }
 ]
 
+collect_places = [
+  %{
+    name: "Dragão do Mar",
+    street: "Rua Dragão do Mar",
+    number: 81,
+    complement: "Centro Cultural",
+    city: "Fortaleza"
+  },
+  %{
+    name: "Parque da Cidade",
+    street: "Alameda São Boaventura",
+    number: 770,
+    complement: "Área verde e lazer",
+    city: "Niterói"
+  },
+  %{
+    name: "MASP",
+    street: "Rua do Masp",
+    number: 181,
+    complement: "Lugar grande e aberto",
+    city: "São Paulo"
+  },
+  %{
+    name: "Praça da Liberdade",
+    street: "Praça da Liberdade",
+    number: 145,
+    complement: "Complexo cultural",
+    city: "Belo Horizonte"
+  },
+  %{
+    name: "Jardim Botânico",
+    street: "Rua Engenheiro Ostoja Roguski",
+    number: 690,
+    complement: "Área verde e pesquisa",
+    city: "Curitiba"
+  },
+  %{
+    name: "Praia de Tambaú",
+    street: "Avenida Almirante Tamandaré",
+    number: 145,
+    complement: "Praia urbana",
+    city: "João Pessoa"
+  },
+  %{
+    name: "Ponte Estaiada",
+    street: "Avenida Raul Lopes",
+    number: 145,
+    complement: "Ponto turístico moderno",
+    city: "Teresina"
+  },
+  %{
+    name: "Parque das Nações Cincinato Naspolini",
+    street: "Rua Henrique Lage",
+    number: 325,
+    complement: "Área verde e lazer",
+    city: "Criciúma"
+  },
+  %{
+    name: "Praça Tubal Vilela",
+    street: "Avenida Anselmo Alves dos Santos",
+    number: 145,
+    complement: "Praça central",
+    city: "Uberlândia"
+  },
+  %{
+    name: "Parque Ambiental Ipiranga",
+    street: "Avenida Tocantins",
+    number: 145,
+    complement: "Área verde e lazer",
+    city: "Anápolis"
+  },
+  %{
+    name: "Praça do Cidadão",
+    street: "QNM 21",
+    number: 145,
+    complement: "Praça comunitária",
+    city: "Ceilândia"
+  },
+  %{
+    name: "Parque Flamboyant",
+    street: "Av. Jamel Cecílio",
+    number: 3300,
+    complement: "Área verde e lazer",
+    city: "Goiânia"
+  },
+  %{
+    name: "Convento da Penha",
+    street: "Praia da Costa",
+    number: 145,
+    complement: "Construção histórica",
+    city: "Vitória"
+  },
+  %{
+    name: "Parque da Maternidade",
+    street: "Rua Santa Terezinha",
+    number: 145,
+    complement: "Área verde e lazer",
+    city: "Feijó"
+  },
+  %{
+    name: "Centro Histórico",
+    street: "Rua João Batista",
+    number: 145,
+    complement: "Casarões coloniais",
+    city: "Penedo"
+  },
+  %{
+    name: "Teatro Amazonas",
+    street: "Avenida Eduardo Ribeiro",
+    number: 659,
+    complement: "Teatro histórico",
+    city: "Manaus"
+  },
+  %{
+    name: "Pelourinho",
+    street: "Rua do Pelourinho",
+    number: 145,
+    complement: "Centro histórico",
+    city: "Salvador"
+  },
+  %{
+    name: "Cristo Crucificado",
+    street: "Rua Siqueira Campos",
+    number: 145,
+    complement: "Monumento religioso",
+    city: "Vitória da Conquista"
+  },
+  %{
+    name: "Catedral Metropolitana",
+    street: "Esplanada dos Ministérios",
+    number: 145,
+    complement: "Catedral moderna",
+    city: "Brasília"
+  },
+  %{
+    name: "Praia da Costa",
+    street: "Av. Dante Michelini",
+    number: 145,
+    complement: "Praia urbana",
+    city: "Vila Velha"
+  },
+  %{
+    name: "Parque Ambiental Ipiranga",
+    street: "Avenida Tocantins",
+    number: 145,
+    complement: "Área verde e lazer",
+    city: "Anápolis"
+  },
+  %{
+    name: "Parque Centenário",
+    street: "Rua João Batista Stocco",
+    number: 145,
+    complement: "Área verde e lazer",
+    city: "Caxias"
+  },
+  %{
+    name: "Parque Tia Nair",
+    street: "Rua José Ribeiro Filho",
+    number: 145,
+    complement: "Área verde e lazer",
+    city: "Cuiabá"
+  },
+  %{
+    name: "Parque do Pombo",
+    street: "Rua Antônio Trajano dos Santos",
+    number: 145,
+    complement: "Área verde e lazer",
+    city: "Três Lagoas"
+  },
+  %{
+    name: "Ver-o-Peso",
+    street: "Avenida Boulevard Castilhos França",
+    number: 145,
+    complement: "Mercado e ponto turístico",
+    city: "Belém"
+  },
+  %{
+    name: "Morro do Careca",
+    street: "Rua Erivan França",
+    number: 145,
+    complement: "Duna e ponto turístico",
+    city: "Patos"
+  },
+  %{
+    name: "Recife Antigo",
+    street: "Rua do Bom Jesus",
+    number: 145,
+    complement: "Centro histórico",
+    city: "Recife"
+  },
+  %{
+    name: "Alto da Sé",
+    street: "Largo da Sé",
+    number: 145,
+    complement: "Centro histórico",
+    city: "Olinda"
+  },
+  %{
+    name: "Cachoeira do Urubu",
+    street: "BR-316",
+    number: 145,
+    complement: "Cachoeira e área verde",
+    city: "Picos"
+  },
+  %{
+    name: "Praça da Bíblia",
+    street: "Avenida Gen. João Nepomuceno",
+    number: 145,
+    complement: "Praça central",
+    city: "Duque de Caxias"
+  },
+  %{
+    name: "Ponte Newton Navarro",
+    street: "Praia da Redinha",
+    number: 145,
+    complement: "Ponte moderna",
+    city: "Natal"
+  },
+  %{
+    name: "Praça Coronel Pedro Osório",
+    street: "Rua XV de Novembro",
+    number: 145,
+    complement: "Praça central",
+    city: "Pelotas"
+  },
+  %{
+    name: "Teatro Municipal",
+    street: "Rua 7 de Setembro",
+    number: 234,
+    complement: "Teatro histórico",
+    city: "Ji-Paraná"
+  },
+  %{
+    name: "Praça do Centro Cívico",
+    street: "Rua Agamenon Magalhães",
+    number: 145,
+    complement: "Praça central",
+    city: "Mucajaí"
+  },
+  %{
+    name: "Praça dos Girassóis",
+    street: "Avenida NS 2",
+    number: 145,
+    complement: "Praça central",
+    city: "Gurupi"
+  },
+  %{
+    name: "Praia da Tartaruga",
+    street: "Avenida 20 de Agosto",
+    number: 145,
+    complement: "Praia fluvial",
+    city: "Lagarto"
+  },
+  %{
+    name: "Praça dos Girassóis",
+    street: "Avenida Teotônio Segurado",
+    number: 145,
+    complement: "Praça central",
+    city: "Palmas"
+  }
+]
+
 states
 |> Enum.each(fn state -> Repo.insert!(States.Schema.changeset(%States.Schema{}, state)) end)
 
@@ -982,4 +1235,35 @@ people_by_city
     city: city,
     blood_type: blood_type
   })
+end)
+
+collect_places
+|> Enum.each(fn place ->
+  city = Repo.get_by(Cities.Schema, name: place.city)
+
+  Repo.insert(%CollectPlaces.Schema{
+    city: city,
+    name: place.name,
+    number: place.number,
+    complement: place.complement,
+    street: place.street
+  })
+end)
+
+1..40
+|> Enum.to_list()
+|> Enum.each(fn number ->
+  random_person =
+    Repo.all(Persons.Schema) |> Enum.map(fn person -> person.id end) |> Enum.random()
+
+  random_place =
+    Repo.all(CollectPlaces.Schema) |> Enum.map(fn place -> place.id end) |> Enum.random()
+
+  with {:ok, date} <- Date.new(2023, :rand.uniform(12), :rand.uniform(30)) do
+    Repo.insert(%Donations.Schema{
+      date: date,
+      collect_place_id: random_place,
+      person_id: random_person
+    })
+  end
 end)

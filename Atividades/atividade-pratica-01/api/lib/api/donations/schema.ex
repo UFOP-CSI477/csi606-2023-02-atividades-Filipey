@@ -8,7 +8,6 @@ defmodule Api.Donations.Schema do
 
   schema "donations" do
     field :date, :date
-
     belongs_to :person, Persons.Schema
     belongs_to :collect_place, CollectPlaces.Schema
     timestamps()
