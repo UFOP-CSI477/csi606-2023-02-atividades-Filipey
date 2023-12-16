@@ -27,3 +27,4 @@ api-*.tar
 
 .env
 
+postgres-data
