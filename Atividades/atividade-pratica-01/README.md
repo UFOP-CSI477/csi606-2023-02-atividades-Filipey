@@ -6,6 +6,51 @@ docker compose up
 ```
 O container da API irá automaticamente popular o banco com dados iniciais para teste. A aplicação estará disponível na porta 4000.
 
+## Tecologias Utilizadas
+
+ - **Elixir**: Elixir é uma linguagem de programação totalmente funcional. Performa na máquina virtual da Erlang, conhecida por criar aplicações de baixa-latência, distribuídas e tolerante a falhas. [Clique aqui para acessar a documentação.](https://elixir-lang.org)
+ - **Phoenix**: Framework Web para construções de APIs JSON ou aplicações totalmente monolíticas.  [Clique aqui para acessar a documentação.](https://www.phoenixframework.org)
+ - **Ecto**: Um Wrapper para lidar com banco de dados em aplicações Elixir. [Clique aqui para acessar a documentação.](https://hexdocs.pm/ecto/getting-started.html)
+ - **Mix**: Ferramenta para gerenciar aplicações Elixir. Pode atuar como gerenciador de pacotes, compilador e ferramenta para execução de testes. [Clique aqui para acessar a documentação](https://hexdocs.pm/elixir/1.16/introduction-to-mix.html)
+ - **Docker**: Ferramenta para virtualização. Utiliza para envelopar ambientes para serem executados em diversas máquinas.
+ 
+## Arquitetura
+Aplicações Phoenix são dividídas em dois cenários: **Domínio** e **Web**. <br/> O contexto de domínio representa toda a lógica de negócio, se relacionando diretamente com a fonte de dados. 
+<br/> O contexto de web atua como interface de comunicação com a web. <br/>
+
+As aplicações se dividem nos seguintes diretórios:
+
+- **Lib**: Código fonte da aplicação. É onde é feito a separação de contextos de domínio e de web.
+- **Config**: Arquivos de configuração para diferentes ambientes.
+- **Priv**: Dados estáticos para aplicações monolíticas e scripts para migrações e povoamento de dados.
+- **Test**: Arquivos de testes automatizados
+ 
+A respeito do domínio da aplicação, foi utilizado o padrão de projeto _Facade/Fachada_. Desta forma, existe uma interface única para interação de cada entidade. Estas interfaces podem ser encontradas na raíz do diretório **lib/api**. Cada entidade possui um arquivo com a formatação *.ex.
+
+```markdown
+api/
+|-- config/
+|-- docker/
+|-- lib/
+| |-- api/
+| |   |-- # arquivos relacionados ao domínio
+| |-- api_web/
+| |   |-- # arquivos relacionados à web
+| |-- api_web.ex
+| |-- app.ex
+|-- priv/
+|  | -- # migrações e povoamento de dados
+|-- test/
+| |-- # arquivos e configurações de testes
+|-- mix.exs
+|-- mix.lock
+|-- .gitignore
+|-- .formatter.exs
+|-- config.exs
+|-- mix.exs
+|-- .iex.exs
+```
+
 ## Documentação das rotas
 
 ### Cidades
