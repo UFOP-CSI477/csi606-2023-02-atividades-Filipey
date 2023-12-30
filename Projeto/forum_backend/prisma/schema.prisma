@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @db.VarChar(15) @unique
+  role UserRoles @default(NORMAL)
+  hashed_password String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+  picture_path String?
+
+  posts Post[]
+  comments Comment[]
+  reactions Reaction[]
+  favoritesPosts FavoritePosts[]
+
+  @@map("users")
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  title String
+  body String
+  created_at DateTime @default(now())
+
+  comments Comment[]
+  reactions Reaction[]
+  favorites FavoritePosts[]
+  attachments Attachment[]
+  tags PostTag[]
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  @@map("posts")
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  body String
+  created_at DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  post Post @relation(fields: [post_id], references: [id])
+  post_id Int
+
+  @@map("comments")
+}
+
+model Reaction {
+  id Int @id @default(autoincrement())
+  value PostReactions
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  post Post @relation(fields: [post_id], references: [id])
+  post_id Int
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  @@map("reactions")
+}
+
+model FavoritePosts {
+  id Int @id @default(autoincrement())
+  updated_at DateTime @default(now()) @updatedAt
+
+  post Post @relation(fields: [post_id], references: [id])
+  post_id Int
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  @@map("favorite_posts")
+}
+
+model Attachment {
+  id Int @id @default(autoincrement())
+  path String @unique
+
+  post Post @relation(fields: [post_id], references: [id])
+  post_id Int
+
+  @@map("attachments")
+}
+
+model Tag {
+  id Int @id @default(autoincrement())
+  name String
+
+  posts_tags PostTag[]
+
+  @@map("tags")
+}
+
+model PostTag {
+  id Int @id @default(autoincrement())
+
+  post Post @relation(fields: [post_id], references: [id])
+  post_id Int
+
+  tag Tag @relation(fields: [tag_id], references: [id])
+  tag_id Int
+
+  @@map("post_tags")
+}
+
+enum UserRoles {
+  NORMAL
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum PostReactions {
+  HAHA
+  LIKE
+  LOVE
+  WOW
+  ANGRY
+  SAD
+}
