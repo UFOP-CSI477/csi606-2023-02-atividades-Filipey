@@ -11,9 +11,9 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { SkipAuth } from 'src/decorators/routes-security.decorator';
-import { CreateUserDto } from 'src/users/dtos/create-user.dto';
-import { UpdateUserDto } from 'src/users/dtos/update-user.dto';
-import { UsersService } from 'src/users/users.service';
+import { CreateUserDto } from 'src/modules/users/dtos/create-user.dto';
+import { UpdateUserDto } from 'src/modules/users/dtos/update-user.dto';
+import { UsersService } from 'src/modules/users/users.service';
 
 @Controller('users')
 export class UsersController {

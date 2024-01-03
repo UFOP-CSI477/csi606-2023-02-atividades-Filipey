@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { NotFoundError } from 'src/common/errors/types/NotFoundError';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateUserDto } from 'src/users/dtos/create-user.dto';
-import { UpdateUserDto } from 'src/users/dtos/update-user.dto';
-import { UserSchema } from 'src/users/schema/user.schema';
+import { PrismaService } from 'src/modules/prisma/prisma.service';
+import { CreateUserDto } from 'src/modules/users/dtos/create-user.dto';
+import { UpdateUserDto } from 'src/modules/users/dtos/update-user.dto';
+import { UserSchema } from 'src/modules/users/schema/user.schema';
 
 @Injectable()
 export class UserRepository {
