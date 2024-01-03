@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { UserRoles } from '@prisma/client';
 import { CreateUserDto } from 'src/modules/users/dtos/create-user.dto';
 import { UpdateUserDto } from 'src/modules/users/dtos/update-user.dto';
 import { UserRepository } from 'src/modules/users/repositories/users.repository';
@@ -8,7 +9,7 @@ export class UsersService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async create(user: CreateUserDto) {
-    return this.create(user);
+    return this.userRepository.create(user);
   }
 
   async findAll() {
@@ -29,6 +30,10 @@ export class UsersService {
 
   async update(id: number, user: UpdateUserDto) {
     return this.userRepository.update(id, user);
+  }
+
+  async updateRole(id: number, newRole: UserRoles) {
+    return this.userRepository.updateUserRole(id, newRole);
   }
 
   async remove(id: number) {

@@ -1,4 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { SkipAuth } from 'src/decorators/routes-security.decorator';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
@@ -7,6 +8,7 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
+  @SkipAuth()
   signIn(@Body() signInDto: Record<string, string>) {
     return this.authService.signIn(signInDto.username, signInDto.password);
   }

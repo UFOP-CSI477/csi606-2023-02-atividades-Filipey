@@ -15,6 +15,11 @@ import { CreateUserDto } from 'src/modules/users/dtos/create-user.dto';
 import { UpdateUserDto } from 'src/modules/users/dtos/update-user.dto';
 import { UsersService } from 'src/modules/users/users.service';
 
+import { UserRoles } from '@prisma/client';
+import * as fs from 'fs';
+import * as path from 'path';
+import { Roles } from 'src/decorators/roles.decorator';
+
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -26,6 +31,7 @@ export class UsersController {
   }
 
   @Get()
+  @Roles(['ADMIN', 'SUPER_ADMIN'])
   async findAll() {
     return this.usersService.findAll();
   }
@@ -45,17 +51,34 @@ export class UsersController {
     return this.usersService.update(+id, user);
   }
 
+  @Patch('/roles/:id')
+  @Roles(['ADMIN', 'SUPER_ADMIN'])
+  async updateUserRole(@Param('id') id: string, @Body() role: UserRoles) {
+    return this.usersService.updateRole(+id, role);
+  }
+
   @Patch('/picture/:id')
   @UseInterceptors(
     FileInterceptor('image', {
       dest: './uploads',
     }),
   )
-  async updateProfilePicture(@Param('id') id: string, @UploadedFile() image) {
-    return this.usersService.updateProfilePicture(+id, image.path);
+  async updateProfilePicture(
+    @Param('id') id: string,
+    @UploadedFile() image: Express.Multer.File,
+  ) {
+    const fileExtension = image.originalname.split('.').pop();
+    const newFileName = `${image.filename}.${fileExtension}`;
+
+    const newPath = path.join('./uploads', newFileName);
+
+    await fs.promises.rename(image.path, newPath);
+
+    return this.usersService.updateProfilePicture(+id, newPath);
   }
 
   @Delete(':id')
+  @Roles(['ADMIN', 'SUPER_ADMIN'])
   async remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
