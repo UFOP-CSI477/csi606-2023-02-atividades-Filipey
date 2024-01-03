@@ -18,7 +18,6 @@ import { UsersModule } from './modules/users/users.module';
     TagsModule,
     ReactionsModule,
   ],
-  controllers: [],
   providers: [
     PrismaService,
     {
