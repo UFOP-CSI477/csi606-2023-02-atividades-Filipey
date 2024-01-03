@@ -32,6 +32,8 @@ model Post {
   title String
   body String
   created_at DateTime @default(now())
+  up_votes Int
+  down_votes Int
 
   comments Comment[]
   reactions Reaction[]
