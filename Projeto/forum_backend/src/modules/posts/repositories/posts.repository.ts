@@ -55,8 +55,6 @@ export class PostsRepository {
         },
         created_at: true,
         reactions: true,
-        up_votes: true,
-        down_votes: true,
         title: true,
         user: true,
         tags: true,
@@ -79,7 +77,21 @@ export class PostsRepository {
 
   async getTimeline() {
     return this.provider.post.findMany({
-      orderBy: [{ created_at: 'desc' }, { up_votes: 'asc' }],
+      orderBy: [{ created_at: 'desc' }, { favorites: { _count: 'asc' } }],
+      select: {
+        _count: {
+          select: {
+            comments: true,
+            reactions: true,
+            favorites: true,
+          },
+        },
+        body: true,
+        title: true,
+        id: true,
+        tags: true,
+        user_id: true,
+      },
     });
   }
 
@@ -97,7 +109,7 @@ export class PostsRepository {
         },
       },
       orderBy: {
-        up_votes: 'desc',
+        favorites: { _count: 'asc' },
       },
     });
   }
@@ -113,7 +125,7 @@ export class PostsRepository {
           },
         },
       },
-      orderBy: [{ created_at: 'desc' }, { up_votes: 'asc' }],
+      orderBy: [{ created_at: 'desc' }, { favorites: { _count: 'asc' } }],
     });
   }
 
