@@ -45,12 +45,28 @@ export class PostsController {
     return this.postsService.findWithTags(ids);
   }
 
-  @Put('/tags/:post_id')
+  @Put('/tags/:postId')
   async assignTags(
-    @Param('post_id') post_id: string,
+    @Param('postId') postId: string,
     @Query('ids') ids: Array<number>,
   ) {
-    return this.postsService.assignTags(+post_id, ids);
+    return this.postsService.assignTags(+postId, ids);
+  }
+
+  @Post('/like/:postId')
+  async likePost(
+    @Param('postId') postId: string,
+    @Query('userId') userId: string,
+  ) {
+    return this.postsService.likePost(+postId, +userId);
+  }
+
+  @Post('/unlike/:postId')
+  async unlikePost(
+    @Param('postId') postId: string,
+    @Query('userId') userId: string,
+  ) {
+    return this.postsService.unlikePost(+postId, +userId);
   }
 
   @Delete('/:id')

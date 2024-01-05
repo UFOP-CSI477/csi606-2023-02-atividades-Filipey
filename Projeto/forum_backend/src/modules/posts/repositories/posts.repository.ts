@@ -114,13 +114,13 @@ export class PostsRepository {
     });
   }
 
-  async findWithTags(tags_ids: Array<number>) {
+  async findWithTags(tagsIds: Array<number>) {
     return this.provider.post.findMany({
       where: {
         tags: {
           some: {
             tag_id: {
-              in: tags_ids,
+              in: tagsIds,
             },
           },
         },
@@ -129,10 +129,10 @@ export class PostsRepository {
     });
   }
 
-  async assignTags(post_id: number, tags_ids: Array<number>) {
+  async assignTags(postId: number, tagsIds: Array<number>) {
     const post = await this.provider.post.findUnique({
       where: {
-        id: post_id,
+        id: postId,
       },
     });
 
@@ -140,21 +140,21 @@ export class PostsRepository {
 
     return this.provider.post.update({
       where: {
-        id: post_id,
+        id: postId,
       },
       data: {
         tags: {
-          connect: tags_ids.map((tag) => ({ id: tag })),
+          connect: tagsIds.map((tag) => ({ id: tag })),
         },
       },
     });
   }
 
-  async remove(id: number, user_id: number) {
+  async remove(id: number, userId: number) {
     const post = await this.provider.post.findUnique({
       where: {
         id: id,
-        user_id: user_id,
+        user_id: userId,
       },
     });
 
@@ -163,6 +163,36 @@ export class PostsRepository {
     return this.provider.post.delete({
       where: {
         id: id,
+      },
+    });
+  }
+
+  async likePost(postId: number, userId: number) {
+    return this.provider.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        favorites: {
+          create: {
+            user_id: userId,
+          },
+        },
+      },
+    });
+  }
+
+  async unlikePost(postId: number, userId: number) {
+    return this.provider.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        favorites: {
+          deleteMany: {
+            user_id: userId,
+          },
+        },
       },
     });
   }

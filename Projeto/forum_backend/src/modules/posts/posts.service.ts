@@ -26,15 +26,23 @@ export class PostsService {
     return this.postsRepository.getTimeline();
   }
 
-  async findWithTags(tags_ids: Array<number>) {
-    return this.postsRepository.findWithTags(tags_ids);
+  async findWithTags(tagsIds: Array<number>) {
+    return this.postsRepository.findWithTags(tagsIds);
   }
 
-  async assignTags(post_id: number, tags_ids: Array<number>) {
-    return this.postsRepository.assignTags(post_id, tags_ids);
+  async assignTags(postId: number, tagsIds: Array<number>) {
+    return this.postsRepository.assignTags(postId, tagsIds);
   }
 
-  async remove(id: number, user_id: number) {
-    return this.postsRepository.remove(id, user_id);
+  async remove(id: number, userId: number) {
+    return this.postsRepository.remove(id, userId);
+  }
+
+  async likePost(postId: number, userId: number) {
+    return this.postsRepository.likePost(postId, userId);
+  }
+
+  async unlikePost(postId: number, userId: number) {
+    return this.postsRepository.unlikePost(postId, userId);
   }
 }
