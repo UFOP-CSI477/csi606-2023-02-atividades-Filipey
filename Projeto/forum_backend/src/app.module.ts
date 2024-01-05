@@ -17,5 +17,6 @@ import { UsersModule } from './modules/users/users.module';
       useClass: RolesGuard,
     },
   ],
+  controllers: [],
 })
 export class AppModule {}
