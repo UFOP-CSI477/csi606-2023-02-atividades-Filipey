@@ -49,7 +49,7 @@ export class PostsController {
   @Put('/tags/:postId')
   async assignTags(
     @Param('postId') postId: string,
-    @Query('ids') ids: Array<number>,
+    @Body('ids') ids: Array<number>,
   ) {
     return this.postsService.assignTags(+postId, ids);
   }

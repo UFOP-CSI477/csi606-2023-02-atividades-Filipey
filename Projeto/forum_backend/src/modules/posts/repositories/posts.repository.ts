@@ -41,6 +41,7 @@ export class PostsRepository {
         id: id,
       },
       select: {
+        id: true,
         attachments: {
           select: {
             id: true,
@@ -65,7 +66,11 @@ export class PostsRepository {
             picture_path: true,
           },
         },
-        tags: true,
+        tags: {
+          select: {
+            tag: true,
+          },
+        },
         favorites: true,
       },
     });
@@ -138,15 +143,8 @@ export class PostsRepository {
 
     if (!post) throw new NotFoundError('Post nao encontrado!');
 
-    return this.provider.post.update({
-      where: {
-        id: postId,
-      },
-      data: {
-        tags: {
-          connect: tagsIds.map((tag) => ({ id: tag })),
-        },
-      },
+    return this.provider.postTag.createMany({
+      data: tagsIds.map((tag) => ({ post_id: postId, tag_id: tag })),
     });
   }
 
