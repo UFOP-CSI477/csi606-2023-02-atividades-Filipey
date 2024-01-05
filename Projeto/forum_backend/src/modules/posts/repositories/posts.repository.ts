@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { PostReactions } from '@prisma/client';
 import { NotFoundError } from 'src/common/errors/types/NotFoundError';
+import { UnauthorizedError } from 'src/common/errors/types/UnauthorizedError';
 import { CreatePostDto } from 'src/modules/posts/dtos/create-post.dto';
 import { PrismaService } from 'src/modules/prisma/prisma.service';
 
@@ -56,17 +58,15 @@ export class PostsRepository {
         created_at: true,
         reactions: true,
         title: true,
-        user: true,
-        tags: true,
-        favorites: {
+        user: {
           select: {
-            user: {
-              select: {
-                _count: true,
-              },
-            },
+            id: true,
+            username: true,
+            picture_path: true,
           },
         },
+        tags: true,
+        favorites: true,
       },
     });
 
@@ -191,6 +191,35 @@ export class PostsRepository {
         favorites: {
           deleteMany: {
             user_id: userId,
+          },
+        },
+      },
+    });
+  }
+
+  async reactToPost(postId: number, userId: number, reaction: PostReactions) {
+    const post = await this.provider.post.findUnique({
+      where: {
+        id: postId,
+      },
+      select: {
+        favorites: true,
+      },
+    });
+
+    if (!post || post.favorites.some((post) => post.user_id === userId)) {
+      throw new UnauthorizedError('O post nao existe ou voce ja reagiu.');
+    }
+
+    return this.provider.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        reactions: {
+          create: {
+            user_id: userId,
+            value: reaction,
           },
         },
       },

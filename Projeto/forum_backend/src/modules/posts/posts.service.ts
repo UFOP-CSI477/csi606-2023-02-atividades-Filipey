@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { PostReactions } from '@prisma/client';
 import { CreatePostDto } from 'src/modules/posts/dtos/create-post.dto';
 import { PostsRepository } from 'src/modules/posts/repositories/posts.repository';
 
@@ -44,5 +45,9 @@ export class PostsService {
 
   async unlikePost(postId: number, userId: number) {
     return this.postsRepository.unlikePost(postId, userId);
+  }
+
+  async reactToPost(postId: number, userId: number, reaction: PostReactions) {
+    return this.postsRepository.reactToPost(postId, userId, reaction);
   }
 }

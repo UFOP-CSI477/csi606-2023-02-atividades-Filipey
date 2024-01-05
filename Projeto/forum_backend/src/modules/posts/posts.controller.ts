@@ -8,6 +8,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+import { PostReactions } from '@prisma/client';
 import { CreatePostDto } from 'src/modules/posts/dtos/create-post.dto';
 import { PostsService } from 'src/modules/posts/posts.service';
 
@@ -67,6 +68,15 @@ export class PostsController {
     @Query('userId') userId: string,
   ) {
     return this.postsService.unlikePost(+postId, +userId);
+  }
+
+  @Post('/react/:postId')
+  async reactToPost(
+    @Param('postId') postId: string,
+    @Query('userId') userId: string,
+    @Body('reaction') reaction: PostReactions,
+  ) {
+    return this.postsService.reactToPost(+postId, +userId, reaction);
   }
 
   @Delete('/:id')
