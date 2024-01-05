@@ -7,6 +7,7 @@ import { PostsModule } from './modules/posts/posts.module';
 import { PrismaService } from './modules/prisma/prisma.service';
 import { TagsModule } from './modules/tags/tags.module';
 import { UsersModule } from './modules/users/users.module';
+import { AssetsController } from './modules/assets/assets.controller';
 
 @Module({
   imports: [AuthModule, UsersModule, PostsModule, CommentsModule, TagsModule],
@@ -17,6 +18,6 @@ import { UsersModule } from './modules/users/users.module';
       useClass: RolesGuard,
     },
   ],
-  controllers: [],
+  controllers: [AssetsController],
 })
 export class AppModule {}
