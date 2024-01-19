@@ -26,7 +26,6 @@
   * Postagens podem conter texto, imagens e vídeos
   * Usuários podem assinalar tags à postagens
   * Usuários podem favoritar discussões
-  * Usuários podem marcar postagens com 'down-votes' ou 'up-votes'
 
 <!-- Apresentar restrições de funcionalidades e de escopo. -->
 ### 3. Restrições
@@ -36,7 +35,11 @@
 <!-- Construir alguns protótipos para a aplicação, disponibilizá-los no Github e descrever o que foi considerado. //-->
 ### 4. Protótipo
 
-  🚧 Em construção 🚧
+  Foram elaborados protótipos para as páginas de "Feed", "Criação de um novo post" e "Visualização detalhada de um post". Elas podem ser encontradas em:
+
+  - [Feed](./sketches/feed.png)
+  - [Criação de um novo post](./sketches/new_post.png)
+  - [Visualização detalhada de um post](./sketches/detailed_post.png)
 
 ### 5. Referências
 
