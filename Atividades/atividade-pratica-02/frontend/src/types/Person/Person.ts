@@ -7,4 +7,6 @@ export type Person = {
   street: string
   complement: string
   rg: string
+  blood_type_id: number
+  city_id: number
 }

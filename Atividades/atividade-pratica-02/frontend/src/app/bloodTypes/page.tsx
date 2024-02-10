@@ -69,8 +69,8 @@ export default function BloodTypesPage() {
   const bloodTypeSchema = z.object({
     type: z
       .string()
-      .min(1, "O Tipo deve possuir 1 caractere! ")
-      .max(1, "O Tipo deve possuir 1 caractere! "),
+      .min(1, "O Tipo deve possuir ao menos 1 caractere! ")
+      .max(2, "O Tipo deve possuir no máximo 2 caracteres! "),
     factor: z.string().regex(/^[+-]$/, "O fator deve ser '-' ou '+'! ")
   })
 
@@ -123,6 +123,10 @@ export default function BloodTypesPage() {
         createBloodType(newBt)
         setNewBt({} as CreateBloodTypeDTO)
         setOpenCreateDialog(false)
+        toast({
+          title: "Conteúdo adicionado com sucesso!",
+          description: "Um novo tipo sanguíneo foi adicionado"
+        })
       } catch (error) {
         if (error instanceof z.ZodError) {
           const errorMessages = error.errors.map(err => err.message)
