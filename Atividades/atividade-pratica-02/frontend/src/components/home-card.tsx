@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Card,
   CardContent,
@@ -5,6 +7,7 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/cardcomponents"
+import { useRouter } from "next/navigation"
 
 interface HomeCardProps {
   section: string
@@ -12,8 +15,13 @@ interface HomeCardProps {
 }
 
 export default function HomeCard({ section, href }: HomeCardProps) {
+  const router = useRouter()
+
   return (
-    <Card className="hover:cursor-pointer hover:border-black transition-all duration-200">
+    <Card
+      onClick={() => router.push(href)}
+      className="hover:cursor-pointer hover:border-black transition-all duration-200"
+    >
       <CardHeader>
         <CardTitle>{section}</CardTitle>
         <CardDescription>

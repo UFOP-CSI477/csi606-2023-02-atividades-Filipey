@@ -1,6 +1,6 @@
 defmodule Api.BloodTypes.Update do
   alias Api.Repo
-  alias Api.States.Schema
+  alias Api.BloodTypes.Schema
 
   def call(%{"id" => id} = params) do
     case Repo.get(Schema, id) do

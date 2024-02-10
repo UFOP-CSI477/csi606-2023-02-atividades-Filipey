@@ -12,22 +12,22 @@ export default function Home() {
       </div>
       <div className="grid grid-cols-2 gap-4 my-4 mx-2">
         <div className="my-4">
-          <HomeCard section="Cidades" href="/" />
+          <HomeCard section="Cidades" href="/cities" />
         </div>
         <div className="my-4">
-          <HomeCard section="Estados" href="/" />
+          <HomeCard section="Estados" href="/states" />
         </div>
         <div className="my-4">
-          <HomeCard section="Locais de Doação" href="/" />
+          <HomeCard section="Locais de Doação" href="/collectPlaces" />
         </div>
         <div className="my-4">
-          <HomeCard section="Tipos Sanguíneos" href="/" />
+          <HomeCard section="Tipos Sanguíneos" href="/bloodTypes" />
         </div>
         <div className="my-4">
-          <HomeCard section="Doações" href="/" />
+          <HomeCard section="Doações" href="/donations" />
         </div>
         <div className="my-4">
-          <HomeCard section="Doadores" href="/" />
+          <HomeCard section="Doadores" href="/persons" />
         </div>
       </div>
       <div className="flex items-center justify-center">
