@@ -29,7 +29,7 @@ defmodule Api.BloodTypes.Schema do
   defp do_validations(changeset, fields) do
     changeset
     |> validate_required(fields)
-    |> validate_length(:type, max: 1)
+    |> validate_length(:type, max: 2)
     |> validate_length(:factor, max: 1)
   end
 end

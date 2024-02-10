@@ -8,7 +8,7 @@ defmodule Api.Repo.Migrations.AddCollectPlacesTable do
       add :number, :integer, null: false
       add :complement, :string
 
-      add :city_id, references(:cities)
+      add :city_id, references(:cities, on_delete: :nilify_all)
 
       timestamps()
     end

@@ -23,7 +23,9 @@ defmodule Api.Persons.All do
       complement: struct.complement,
       rg: struct.rg,
       inserted_at: struct.inserted_at,
-      updated_at: struct.updated_at
+      updated_at: struct.updated_at,
+      blood_type_id: struct.blood_type_id,
+      city_id: struct.city_id
     }
   end
 end
