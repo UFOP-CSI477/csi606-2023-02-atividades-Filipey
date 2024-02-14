@@ -10,7 +10,7 @@ export default function Home() {
           </h1>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4 my-4 mx-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4 mx-2">
         <div className="my-4">
           <HomeCard section="Cidades" href="/cities" />
         </div>
