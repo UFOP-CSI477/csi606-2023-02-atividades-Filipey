@@ -2,6 +2,6 @@ export type CreateCollectPlaceDTO = {
   name: string
   street: string
   number: number
-  complement: number
+  complement: string
   city_id: number
 }
