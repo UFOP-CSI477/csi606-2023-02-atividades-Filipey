@@ -17,6 +17,7 @@ defmodule ApiWeb.Router do
     resources "/states", StatesController, only: [:create, :update, :delete, :show, :index]
     get "/states/by_name/:name", StatesController, :get_by_name
     options "/states", StatesController, :options
+    options "/states/:id", StatesController, :options
 
     resources "/blood_types", BloodTypesController,
       only: [:create, :update, :delete, :show, :index]
