@@ -20,3 +20,14 @@ export function convertStringDate(dateString: string): string {
 
   return date.toLocaleDateString("pt-BR", options)
 }
+
+export function removeUnusedOptionalParams<T extends Record<string, any>>(
+  obj: T
+): T {
+  Object.keys(obj).forEach(key => {
+    if (obj.hasOwnProperty(key) && obj[key] === null) {
+      delete obj[key]
+    }
+  })
+  return obj
+}
