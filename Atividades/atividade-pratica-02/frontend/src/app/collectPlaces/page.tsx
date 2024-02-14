@@ -64,7 +64,7 @@ export default function CollectPlacesPage() {
   const handleDeletePlace = () => {
     if (selectedPlace) {
       deletePlace(selectedPlace.id)
-      setOpenCreateDialog(false)
+      setOpenDeleteDialog(false)
     }
   }
 
