@@ -1,61 +1,27 @@
-import { toast } from "@/components/ui/use-toastcomponents"
 import {
-  createState,
-  deleteState,
-  updateState
+  findAllStates,
+  findStateById,
+  findStateByName
 } from "@/network/services/statescomponents"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 
-export function useCreateState() {
-  const queryClient = useQueryClient()
-
-  return useMutation({
-    mutationKey: ["createState"],
-    mutationFn: createState,
-    onSuccess: data => {
-      queryClient.invalidateQueries({
-        queryKey: ["findAllStates"]
-      })
-      toast({
-        variant: "default",
-        description: data.message
-      })
-    }
+export function useFindAllStates() {
+  return useQuery({
+    queryKey: ["findAllStates"],
+    queryFn: findAllStates
   })
 }
 
-export function useUpdateState() {
-  const queryClient = useQueryClient()
-
-  return useMutation({
-    mutationKey: ["updateState"],
-    mutationFn: updateState,
-    onSuccess: data => {
-      queryClient.invalidateQueries({
-        queryKey: ["findAllStates"]
-      })
-      toast({
-        variant: "default",
-        description: data.message
-      })
-    }
+export function useFindStateById(id: number) {
+  return useQuery({
+    queryKey: ["findStateById", id],
+    queryFn: () => findStateById(id)
   })
 }
 
-export function useDeleteState() {
-  const queryClient = useQueryClient()
-
-  return useMutation({
-    mutationKey: ["deleteState"],
-    mutationFn: deleteState,
-    onSuccess: data => {
-      queryClient.invalidateQueries({
-        queryKey: ["findAllStates"]
-      })
-      toast({
-        variant: "default",
-        description: data.message
-      })
-    }
+export function useFindStateByName(name: string) {
+  return useQuery({
+    queryKey: ["findStateByName", name],
+    queryFn: () => findStateByName(name)
   })
 }

@@ -9,7 +9,6 @@ defmodule ApiWeb.Donations.DonationsJSON do
       data: %{
         id: donation.id,
         date: donation.date,
-        city_id: donation.city_id,
         collect_place_id: donation.collect_place_id,
         inserted_at: donation.inserted_at,
         updated_at: donation.updated_at
@@ -23,7 +22,6 @@ defmodule ApiWeb.Donations.DonationsJSON do
       data: %{
         id: donation.id,
         date: donation.date,
-        city_id: donation.city_id,
         collect_place_id: donation.collect_place_id,
         inserted_at: donation.inserted_at,
         updated_at: donation.updated_at
@@ -48,7 +46,6 @@ defmodule ApiWeb.Donations.DonationsJSON do
       data: %{
         id: donation.id,
         date: donation.date,
-        city_id: donation.city_id,
         collect_place_id: donation.collect_place_id,
         inserted_at: donation.inserted_at,
         updated_at: donation.updated_at

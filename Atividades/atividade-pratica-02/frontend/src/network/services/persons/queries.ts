@@ -1,62 +1,27 @@
-import { toast } from "@/components/ui/use-toastcomponents"
 import {
-  createPerson,
-  deletePerson,
-  updatePerson
+  findAllPersons,
+  findPersonById,
+  findPersonByName
 } from "@/network/services/personscomponents"
+import { useQuery } from "@tanstack/react-query"
 
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-
-export function useCreatePerson() {
-  const queryClient = useQueryClient()
-
-  return useMutation({
-    mutationKey: ["createPerson"],
-    mutationFn: createPerson,
-    onSuccess: data => {
-      queryClient.invalidateQueries({
-        queryKey: ["findAllPersons"]
-      })
-      toast({
-        variant: "default",
-        description: data.message
-      })
-    }
+export function useFindAllPersons() {
+  return useQuery({
+    queryKey: ["findAllPersons"],
+    queryFn: findAllPersons
   })
 }
 
-export function useUpdatePerson() {
-  const queryClient = useQueryClient()
-
-  return useMutation({
-    mutationKey: ["updatePerson"],
-    mutationFn: updatePerson,
-    onSuccess: data => {
-      queryClient.invalidateQueries({
-        queryKey: ["findAllPersons"]
-      })
-      toast({
-        variant: "default",
-        description: data.message
-      })
-    }
+export function useFindPersonById(id: number) {
+  return useQuery({
+    queryKey: ["findPersonById", id],
+    queryFn: () => findPersonById(id)
   })
 }
 
-export function useDeletePerson() {
-  const queryClient = useQueryClient()
-
-  return useMutation({
-    mutationKey: ["deletePerson"],
-    mutationFn: deletePerson,
-    onSuccess: data => {
-      queryClient.invalidateQueries({
-        queryKey: ["findAllPersons"]
-      })
-      toast({
-        variant: "default",
-        description: data.message
-      })
-    }
+export function useFindPersonByName(name: string) {
+  return useQuery({
+    queryKey: ["findPersonByName", name],
+    queryFn: () => findPersonByName(name)
   })
 }

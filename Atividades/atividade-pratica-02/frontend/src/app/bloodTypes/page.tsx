@@ -1,23 +1,7 @@
 "use client"
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle
-} from "@/components/ui/alert-dialogcomponents"
+import { HandleEntityDialog } from "@/components/dialog/changecomponents"
+import { DeleteAlertDialog } from "@/components/dialog/deletecomponents"
 import { Button } from "@/components/ui/buttoncomponents"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle
-} from "@/components/ui/dialogcomponents"
 import { Input } from "@/components/ui/inputcomponents"
 import { Label } from "@/components/ui/labelcomponents"
 import { Skeleton } from "@/components/ui/skeletoncomponents"
@@ -217,139 +201,106 @@ export default function BloodTypesPage() {
           ))}
         </TableBody>
       </Table>
-      <AlertDialog open={openDeleteDialog}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Tem certeza?</AlertDialogTitle>
-            <AlertDialogDescription>
-              Ao deletar este Tipo Sanguíneo, não será possível recuperar este
-              registro!
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setOpenDeleteDialog(false)}>
-              Cancelar
-            </AlertDialogCancel>
-            <AlertDialogAction onClick={() => handleDeleteBloodType()}>
-              Confirmar
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+
+      <DeleteAlertDialog
+        openState={openDeleteDialog}
+        onOpenStateChange={setOpenDeleteDialog}
+        onCancelAction={() => setOpenDeleteDialog(false)}
+        onConfirmAction={() => handleDeleteBloodType()}
+        entity="este Tipo Sanguíneo"
+      />
 
       {selectedBt && updatedBt && (
-        <Dialog onOpenChange={setOpenUpdateDialog} open={openUpdateDialog}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Atualização de Tipo Sanguíneo</DialogTitle>
-              <DialogDescription>
-                Atualize os campos nos quais deseja salvar alterações
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="type" className="text-right">
-                  Tipo
-                </Label>
-                <Input
-                  id="type"
-                  defaultValue={updatedBt?.type}
-                  className="col-span-3"
-                  onChange={e =>
-                    setUpdatedBt({
-                      ...updatedBt,
-                      type: e.target.value
-                    })
-                  }
-                />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="factor" className="text-right">
-                  Fator
-                </Label>
-                <Input
-                  id="factor"
-                  defaultValue={updatedBt?.factor}
-                  className="col-span-3"
-                  onChange={e =>
-                    setUpdatedBt({
-                      ...updatedBt,
-                      factor: e.target.value
-                    })
-                  }
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button
-                onClick={handleUpdateBloodType}
-                disabled={
-                  (updatedBt.factor === selectedBt.factor &&
-                    updatedBt.type === selectedBt.type) ||
-                  updatedBt.factor === "" ||
-                  updatedBt.type === ""
-                }
-              >
-                Confirmar mudanças
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      )}
-      <Dialog open={openCreateDialog} onOpenChange={setOpenCreateDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Criação de Tipo Sanguíneo</DialogTitle>
-            <DialogDescription>
-              Preencha os campos para realizar o cadastro
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="type" className="text-right">
-                Tipo
-              </Label>
-              <Input
-                required
-                id="type"
-                defaultValue=""
-                className="col-span-3"
-                onChange={e =>
-                  setNewBt({
-                    ...newBt,
-                    type: e.target.value
-                  })
-                }
-              />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="factor" className="text-right">
-                Fator
-              </Label>
-              <Input
-                required
-                id="factor"
-                defaultValue=""
-                className="col-span-3"
-                onChange={e => {
-                  setNewBt({
-                    ...newBt,
-                    factor: e.target.value
-                  })
-                }}
-              />
-            </div>
+        <HandleEntityDialog
+          openState={openUpdateDialog}
+          onOpenStateChange={setOpenUpdateDialog}
+          title="Tipo Sanguíneo"
+          type="update"
+          onConfirmAction={handleUpdateBloodType}
+          disabled={
+            (updatedBt.factor === selectedBt.factor &&
+              updatedBt.type === selectedBt.type) ||
+            updatedBt.factor === "" ||
+            updatedBt.type === ""
+          }
+        >
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="type" className="text-right">
+              Tipo
+            </Label>
+            <Input
+              id="type"
+              defaultValue={updatedBt?.type}
+              className="col-span-3"
+              onChange={e =>
+                setUpdatedBt({
+                  ...updatedBt,
+                  type: e.target.value
+                })
+              }
+            />
           </div>
-          <DialogFooter>
-            <Button
-              disabled={!newBt || !newBt.factor || !newBt.type}
-              onClick={handleCreateBloodType}
-            >
-              Criar novo Tipo Sanguíneo
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="factor" className="text-right">
+              Fator
+            </Label>
+            <Input
+              id="factor"
+              defaultValue={updatedBt?.factor}
+              className="col-span-3"
+              onChange={e =>
+                setUpdatedBt({
+                  ...updatedBt,
+                  factor: e.target.value
+                })
+              }
+            />
+          </div>
+        </HandleEntityDialog>
+      )}
+      <HandleEntityDialog
+        openState={openCreateDialog}
+        onOpenStateChange={setOpenCreateDialog}
+        type="create"
+        title="Tipo Sanguíneo"
+        onConfirmAction={handleCreateBloodType}
+        disabled={!newBt || !newBt.factor || !newBt.type}
+      >
+        <div className="grid grid-cols-4 items-center gap-4">
+          <Label htmlFor="type" className="text-right">
+            Tipo
+          </Label>
+          <Input
+            required
+            id="type"
+            defaultValue=""
+            className="col-span-3"
+            onChange={e =>
+              setNewBt({
+                ...newBt,
+                type: e.target.value
+              })
+            }
+          />
+        </div>
+        <div className="grid grid-cols-4 items-center gap-4">
+          <Label htmlFor="factor" className="text-right">
+            Fator
+          </Label>
+          <Input
+            required
+            id="factor"
+            defaultValue=""
+            className="col-span-3"
+            onChange={e => {
+              setNewBt({
+                ...newBt,
+                factor: e.target.value
+              })
+            }}
+          />
+        </div>
+      </HandleEntityDialog>
     </div>
   )
 }

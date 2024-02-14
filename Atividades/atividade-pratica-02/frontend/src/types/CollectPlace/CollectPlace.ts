@@ -4,4 +4,5 @@ export type CollectPlace = {
   number: number
   inserted_at: string
   updated_at: string
+  city_id: number
 }
