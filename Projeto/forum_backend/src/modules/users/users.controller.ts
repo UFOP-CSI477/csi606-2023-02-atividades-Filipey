@@ -31,17 +31,19 @@ export class UsersController {
   }
 
   @Get()
-  @Roles(['ADMIN', 'SUPER_ADMIN'])
+  @Roles(['ADMIN', 'SUPER_ADMIN', 'NORMAL'])
   async findAll() {
     return this.usersService.findAll();
   }
 
   @Get(':id')
+  @SkipAuth()
   async findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
   }
 
   @Get('/username/:username')
+  @SkipAuth()
   async findByUsername(@Param('username') username: string) {
     return this.usersService.findByUsername(username);
   }

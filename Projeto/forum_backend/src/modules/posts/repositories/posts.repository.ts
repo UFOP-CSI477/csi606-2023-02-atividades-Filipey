@@ -54,6 +54,13 @@ export class PostsRepository {
             body: true,
             created_at: true,
             id: true,
+            user: {
+              select: {
+                picture_path: true,
+                id: true,
+                username: true,
+              },
+            },
           },
         },
         created_at: true,
@@ -68,7 +75,12 @@ export class PostsRepository {
         },
         tags: {
           select: {
-            tag: true,
+            tag: {
+              select: {
+                name: true,
+                id: true,
+              },
+            },
           },
         },
         favorites: true,
@@ -87,14 +99,24 @@ export class PostsRepository {
         _count: {
           select: {
             comments: true,
-            reactions: true,
             favorites: true,
           },
         },
         body: true,
         title: true,
         id: true,
-        tags: true,
+        created_at: true,
+        tags: {
+          select: {
+            tag: {
+              select: {
+                name: true,
+                id: true,
+              },
+            },
+          },
+        },
+        reactions: true,
         user_id: true,
       },
     });
@@ -166,6 +188,19 @@ export class PostsRepository {
   }
 
   async likePost(postId: number, userId: number) {
+    const post = await this.provider.post.findUnique({
+      where: {
+        id: postId,
+      },
+      select: {
+        favorites: true,
+      },
+    });
+
+    if (!post || post.favorites.some((post) => post.user_id === userId)) {
+      throw new UnauthorizedError('O post nao existe ou voce ja reagiu.');
+    }
+
     return this.provider.post.update({
       where: {
         id: postId,
@@ -181,6 +216,19 @@ export class PostsRepository {
   }
 
   async unlikePost(postId: number, userId: number) {
+    const post = await this.provider.post.findUnique({
+      where: {
+        id: postId,
+      },
+      select: {
+        favorites: true,
+      },
+    });
+
+    if (!post || !post.favorites.some((post) => post.user_id === userId)) {
+      throw new UnauthorizedError('Você não favoritou este post.');
+    }
+
     return this.provider.post.update({
       where: {
         id: postId,
@@ -201,11 +249,11 @@ export class PostsRepository {
         id: postId,
       },
       select: {
-        favorites: true,
+        reactions: true,
       },
     });
 
-    if (!post || post.favorites.some((post) => post.user_id === userId)) {
+    if (!post || post.reactions.some((post) => post.user_id === userId)) {
       throw new UnauthorizedError('O post nao existe ou voce ja reagiu.');
     }
 
