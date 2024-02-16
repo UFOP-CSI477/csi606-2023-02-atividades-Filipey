@@ -1,7 +1,37 @@
 import { toast } from "@/components/ui/use-toast"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { createComment } from "network/services/Comments"
-import { likePost, reactToPost, unlikePost } from "network/services/Posts"
+import {
+  assignTagsToPost,
+  createPost,
+  likePost,
+  reactToPost,
+  unlikePost
+} from "network/services/Posts"
+
+export function useCreatePost() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationKey: ["createPost"],
+    mutationFn: createPost,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["timeline"]
+      })
+      toast({
+        title: "Seu post foi salvo!"
+      })
+    },
+    onError: res => {
+      toast({
+        title: "Erro ao reagir à esta postagem!",
+        description: res.response.data.message,
+        variant: "destructive"
+      })
+    }
+  })
+}
 
 export function useLikePost(postId: number) {
   const queryClient = useQueryClient()
@@ -98,12 +128,36 @@ export function useCreateComment(postId: number) {
         queryKey: ["timeline"]
       })
       toast({
-        title: "Sua reação foi gravada com sucesso! :)"
+        title: "Seu comentário foi salvo com sucesso! :)"
       })
     },
     onError: res => {
       toast({
         title: "Erro ao reagir à esta postagem!",
+        description: res.response.data.message,
+        variant: "destructive"
+      })
+    }
+  })
+}
+
+export function useAssignTagsToPost() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationKey: ["assignTagsToPost"],
+    mutationFn: assignTagsToPost,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["timeline"]
+      })
+      toast({
+        title: "As tags foram assimiladas corretamente! :)"
+      })
+    },
+    onError: res => {
+      toast({
+        title: "Erro ao assinalar tags à esta postagem!",
         description: res.response.data.message,
         variant: "destructive"
       })

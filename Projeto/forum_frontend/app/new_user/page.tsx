@@ -11,55 +11,33 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { toast } from "@/components/ui/use-toast"
-import { useAuthStore } from "@/hooks/useAuth"
-import { useLogin } from "network/services/Auth/mutations"
+import { useCreateUser } from "network/services/Users/mutations"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { CreateUserDTO } from "types/User/CreateUserDTO"
+import { UserRoles } from "types/User/UserRoles"
 
-type LoginData = {
-  username: string
-  password: string
-}
+export default function NewUserPage() {
+  const [newUser, setNewUser] = useState<CreateUserDTO>({} as CreateUserDTO)
+  const { mutate: createUser } = useCreateUser()
 
-export default function LoginPage() {
-  const [user, setUser] = useState<LoginData>({} as LoginData)
-
-  const { mutate: login } = useLogin()
-  const { setData } = useAuthStore()
   const router = useRouter()
 
-  const handleLogin = () => {
-    if (user.username && user.password) {
-      login(user, {
-        onSuccess(data) {
-          setData({
-            userData: data.user,
-            access_token: data.access_token
-          })
-          localStorage.setItem("access_token", data.access_token)
-          router.push("/home")
-          toast({
-            title: "Bem vindo!"
-          })
-        },
-        onError() {
-          toast({
-            title: "Credenciais inválidas!",
-            variant: "destructive"
-          })
-        }
-      })
-    }
+  const handleCreateUser = () => {
+    createUser({
+      username: newUser.username,
+      password: newUser.password,
+      role: UserRoles.NORMAL
+    })
   }
 
   return (
     <div className="flex items-center justify-center my-4">
       <Card className="w-1/2 h-full">
         <CardHeader>
-          <CardTitle>Login</CardTitle>
+          <CardTitle>Cadastro</CardTitle>
           <CardDescription>
-            É necessário a sua autenticação para acessar o sistema
+            Digite suas credencias para poder acessar o sistema
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -70,7 +48,9 @@ export default function LoginPage() {
                 <Input
                   id="username"
                   placeholder="Digite seu username"
-                  onChange={e => setUser({ ...user, username: e.target.value })}
+                  onChange={e =>
+                    setNewUser({ ...newUser, username: e.target.value })
+                  }
                 />
               </div>
               <div className="flex flex-col space-y-1.5">
@@ -79,25 +59,24 @@ export default function LoginPage() {
                   id="password"
                   type="password"
                   placeholder="Digite sua senha"
-                  onChange={e => setUser({ ...user, password: e.target.value })}
+                  onChange={e =>
+                    setNewUser({ ...newUser, password: e.target.value })
+                  }
                 />
               </div>
             </div>
           </form>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Button
-            onClick={() => router.push("/new_user")}
-            className="bg-sky-700"
-          >
-            Me cadastrar
+          <Button onClick={() => router.push("/")} className="bg-sky-700">
+            Voltar
           </Button>
           <Button
-            disabled={!user.username || !user.password}
+            disabled={!newUser.username || !newUser.password}
             className="bg-green-700"
-            onClick={handleLogin}
+            onClick={handleCreateUser}
           >
-            Entrar
+            Cadastrar
           </Button>
         </CardFooter>
       </Card>

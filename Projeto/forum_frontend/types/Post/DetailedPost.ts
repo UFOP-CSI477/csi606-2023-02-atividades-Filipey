@@ -34,5 +34,9 @@ export type DetailedPost = {
     username: string
     picture_path: string | null
   }
-  tags: Tag[]
+  tags: [
+    {
+      tag: Tag
+    }
+  ]
 }

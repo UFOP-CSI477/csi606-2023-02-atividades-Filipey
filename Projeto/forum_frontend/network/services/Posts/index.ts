@@ -10,6 +10,13 @@ export async function findAllPosts(): Promise<Post[]> {
   return response.data
 }
 
+export async function findAllUserFavorites(
+  id: number
+): Promise<TimelinePost[]> {
+  const response = await api.get(`/posts/favorites/${id}`)
+  return response.data
+}
+
 export async function findPostById(id: number): Promise<Post> {
   const response = await api.get(`/posts/by_id/${id}`)
   return response.data
@@ -34,7 +41,9 @@ export async function assignTagsToPost(payload: {
   ids: number[]
   post_id: number
 }): Promise<{ count: number }> {
-  const response = await api.post(`/posts/tags/${payload.post_id}`, payload.ids)
+  const response = await api.put(`/posts/tags/${payload.post_id}`, {
+    ids: payload.ids
+  })
   return response.data
 }
 

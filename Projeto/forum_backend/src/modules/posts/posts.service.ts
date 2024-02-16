@@ -15,6 +15,10 @@ export class PostsService {
     return this.postsRepository.findAll();
   }
 
+  async findUserAllFavorites(userId: number) {
+    return this.postsRepository.findUserAllFavorites(userId);
+  }
+
   async findOne(id: number) {
     return this.postsRepository.findOne(id);
   }

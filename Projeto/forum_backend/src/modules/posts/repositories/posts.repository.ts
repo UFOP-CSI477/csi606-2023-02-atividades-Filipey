@@ -23,6 +23,45 @@ export class PostsRepository {
     });
   }
 
+  async findUserAllFavorites(userId: number) {
+    return this.provider.post.findMany({
+      orderBy: [{ created_at: 'desc' }, { favorites: { _count: 'asc' } }],
+      where: {
+        favorites: {
+          some: {
+            user_id: {
+              equals: userId,
+            },
+          },
+        },
+      },
+      select: {
+        _count: {
+          select: {
+            comments: true,
+            favorites: true,
+          },
+        },
+        body: true,
+        title: true,
+        id: true,
+        created_at: true,
+        tags: {
+          select: {
+            tag: {
+              select: {
+                name: true,
+                id: true,
+              },
+            },
+          },
+        },
+        reactions: true,
+        user_id: true,
+      },
+    });
+  }
+
   async findOne(id: number) {
     const post = this.provider.post.findUnique({
       where: {

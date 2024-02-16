@@ -26,6 +26,11 @@ export class PostsController {
     return this.postsService.findAll();
   }
 
+  @Get('/favorites/:id')
+  async findUserAllFavorites(@Param('id') id: string) {
+    return this.postsService.findUserAllFavorites(+id);
+  }
+
   @Get('/by_id/:id')
   async findOne(@Param('id') id: string) {
     return this.postsService.findOne(+id);

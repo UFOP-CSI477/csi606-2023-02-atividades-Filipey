@@ -68,7 +68,9 @@ export function PostWithDetails({ post }: PostWithDetailsProps) {
                 {post.user.username}
               </span>
               {post.tags.length > 0 ? (
-                post.tags.map(tag => <Badge key={tag.id}>{tag.name}</Badge>)
+                post.tags.map(tag => (
+                  <Badge key={tag.tag.id}>{tag.tag.name}</Badge>
+                ))
               ) : (
                 <Badge variant="secondary">Nenhuma Tag</Badge>
               )}

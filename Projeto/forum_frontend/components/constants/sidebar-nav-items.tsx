@@ -1,6 +1,7 @@
 import { type NavItem } from "@/components/layout/sidebar-nav"
 import {
   CircleUserIcon,
+  FileType2Icon,
   HomeIcon,
   StarIcon,
   StickyNoteIcon
@@ -18,6 +19,12 @@ export const NavItems: NavItem[] = [
     icon: CircleUserIcon,
     href: "/profile",
     color: "text-orange-500"
+  },
+  {
+    title: "Meus posts",
+    icon: FileType2Icon,
+    href: "/posts/my",
+    color: "text-purple-500"
   },
   {
     title: "Novo post",
