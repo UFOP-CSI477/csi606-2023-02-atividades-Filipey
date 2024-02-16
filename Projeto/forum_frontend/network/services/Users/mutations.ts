@@ -17,10 +17,11 @@ export function useCreateUser() {
         description: "Volte para tela inicial para acessar o sistema!"
       })
     },
-    onError(error) {
+    onError(res) {
+      const error = res as any
       toast({
         title: "Erro ao criar usuário!",
-        description: res.response.data.message,
+        description: error.response.data.message,
         variant: "destructive"
       })
     }
@@ -48,9 +49,10 @@ export function useUpdatePicture() {
       queryClient.invalidateQueries()
     },
     onError: res => {
+      const error = res as any
       toast({
         title: "Erro ao atualizar foto de perfil!",
-        description: res.response.data.message,
+        description: error.response.data.message,
         variant: "destructive"
       })
     }
@@ -78,9 +80,10 @@ export function useUpdateUsername() {
       queryClient.invalidateQueries()
     },
     onError: res => {
+      const error = res as any
       toast({
         title: "Erro ao atualizar foto de perfil!",
-        description: res.response.data.message,
+        description: error.response.data.message,
         variant: "destructive"
       })
     }

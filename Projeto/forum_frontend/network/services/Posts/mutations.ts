@@ -24,9 +24,10 @@ export function useCreatePost() {
       })
     },
     onError: res => {
+      const error = res as any
       toast({
         title: "Erro ao reagir à esta postagem!",
-        description: res.response.data.message,
+        description: error.response.data.message,
         variant: "destructive"
       })
     }
@@ -51,9 +52,10 @@ export function useLikePost(postId: number) {
       })
     },
     onError: res => {
+      const error = res as any
       toast({
         title: "Erro ao reagir à esta postagem!",
-        description: res.response.data.message,
+        description: error.response.data.message,
         variant: "destructive"
       })
     }
@@ -78,9 +80,10 @@ export function useUnlike(postId: number) {
       })
     },
     onError: res => {
+      const error = res as any
       toast({
         title: "Erro ao reagir à esta postagem!",
-        description: res.response.data.message,
+        description: error.response.data.message,
         variant: "destructive"
       })
     }
@@ -105,9 +108,10 @@ export function useReactToPost(postId: number) {
       })
     },
     onError: res => {
+      const error = res as any
       toast({
         title: "Erro ao reagir à esta postagem!",
-        description: res.response.data.message,
+        description: error.response.data.message,
         variant: "destructive"
       })
     }
@@ -132,9 +136,10 @@ export function useCreateComment(postId: number) {
       })
     },
     onError: res => {
+      const error = res as any
       toast({
         title: "Erro ao reagir à esta postagem!",
-        description: res.response.data.message,
+        description: error.response.data.message,
         variant: "destructive"
       })
     }
@@ -156,9 +161,10 @@ export function useAssignTagsToPost() {
       })
     },
     onError: res => {
+      const error = res as any
       toast({
         title: "Erro ao assinalar tags à esta postagem!",
-        description: res.response.data.message,
+        description: error.response.data.message,
         variant: "destructive"
       })
     }

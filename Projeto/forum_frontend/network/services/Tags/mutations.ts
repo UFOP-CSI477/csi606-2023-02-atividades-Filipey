@@ -14,9 +14,10 @@ export function useCreateNewTag() {
       })
     },
     onError: res => {
+      const error = res as any
       toast({
         title: "Erro ao criar tag!",
-        description: res.response.data.message,
+        description: error.response.data.message,
         variant: "destructive"
       })
     }

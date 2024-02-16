@@ -23,12 +23,12 @@ type UpdatableProfile = {
 }
 
 export default function ProfilePage() {
-  const { data, setData } = useAuthStore()
+  const { data } = useAuthStore()
   const { mutate: updateUsername } = useUpdateUsername()
   const { mutate: updatePicture } = useUpdatePicture()
 
   const [profile, setProfile] = useState<UpdatableProfile>({
-    username: data!.userData.username,
+    username: data?.userData ? data.userData.username : "",
     picture: null
   })
 
@@ -39,18 +39,18 @@ export default function ProfilePage() {
   }
 
   const handleUpdateChanges = () => {
-    if (profile.username !== data?.userData.username) {
+    if (data?.userData && profile.username !== data.userData.username) {
       updateUsername({
-        id: data!.userData.id,
+        id: data.userData.id,
         data: {
           username: profile.username
         }
       })
     }
 
-    if (profile.picture !== null) {
+    if (data?.userData && profile.picture !== null) {
       updatePicture({
-        id: data!.userData.id,
+        id: data.userData.id,
         data: {
           file: profile.picture
         }
@@ -75,9 +75,12 @@ export default function ProfilePage() {
         <CardContent>
           <form onSubmit={e => e.preventDefault()}>
             <div className="flex-col-1 space-y-4">
-              <div className="flex items-center justify-center">
-                <PostCardAvatar path={data!.userData.picture_path} />
-              </div>
+              {data?.userData && (
+                <div className="flex items-center justify-center">
+                  <PostCardAvatar path={data.userData.picture_path} />
+                </div>
+              )}
+
               <div className="flex items-center justify-center -mt-2">
                 <span className="font-semibold">{data?.userData.username}</span>
               </div>
@@ -113,7 +116,8 @@ export default function ProfilePage() {
             <div className="flex items-center justify-end mt-4">
               <Button
                 disabled={
-                  profile.username === data!.userData.username &&
+                  data?.userData &&
+                  profile.username === data.userData.username &&
                   profile.picture === null
                 }
                 onClick={handleUpdateChanges}

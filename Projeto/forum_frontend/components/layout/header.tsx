@@ -10,11 +10,12 @@ import { useRouter } from "next/navigation"
 
 export default function Header() {
   const router = useRouter()
-  const { data: authData, setData } = useAuthStore()
-  const { data: image } = useFindImageByPath(authData!.userData.picture_path)
+  const { data: authData } = useAuthStore()
+  const { data: image } = useFindImageByPath(authData?.userData.picture_path)
 
   const handleLogout = () => {
     localStorage.setItem("acess_token", "")
+    localStorage.removeItem("auth")
     router.push("/")
   }
 

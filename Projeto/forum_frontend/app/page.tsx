@@ -38,6 +38,7 @@ export default function LoginPage() {
             access_token: data.access_token
           })
           localStorage.setItem("access_token", data.access_token)
+          localStorage.setItem("auth", "true")
           router.push("/home")
           toast({
             title: "Bem vindo!"
