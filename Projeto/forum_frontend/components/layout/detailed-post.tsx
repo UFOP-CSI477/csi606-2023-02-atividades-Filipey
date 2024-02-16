@@ -5,6 +5,7 @@ import { PostCardAvatar } from "@/components/layout/post-card-avatar"
 import { ReactionButton } from "@/components/layout/reaction-button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -13,13 +14,28 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle
+} from "@/components/ui/dialog"
+import { FancyMultiSelect } from "@/components/ui/multi-select"
 import { useAuthStore } from "@/hooks/useAuth"
 import { convertStringDate } from "lib/utils"
 import { MessageSquareTextIcon, StarIcon } from "lucide-react"
-import { useLikePost, useUnlike } from "network/services/Posts/mutations"
+import {
+  useAssignTagsToPost,
+  useLikePost,
+  useUnlike
+} from "network/services/Posts/mutations"
+import { useFindAllTags } from "network/services/Tags/queries"
 import { useState } from "react"
 import { DetailedPost } from "types/Post/DetailedPost"
 import { REACTIONS } from "types/Post/PostReactions"
+import { Tag } from "types/Tag/Tag"
 
 interface PostWithDetailsProps {
   post: DetailedPost
@@ -29,8 +45,16 @@ export function PostWithDetails({ post }: PostWithDetailsProps) {
   const { data } = useAuthStore()
   const { mutate: like } = useLikePost(post.id)
   const { mutate: unlike } = useUnlike(post.id)
+  const { data: tags } = useFindAllTags()
+  const { mutate: assignTagsToPost } = useAssignTagsToPost()
 
+  const [selectedTag, setSelectedTag] = useState<Tag[]>([])
+  const [openTags, setOpenTags] = useState(false)
   const [comment, setComment] = useState(false)
+
+  if (!tags) {
+    return <div>Carregando...</div>
+  }
 
   const handleUserLikes = () => {
     const hasUserLikedThisPost = post.favorites.filter(
@@ -49,6 +73,19 @@ export function PostWithDetails({ post }: PostWithDetailsProps) {
       })
     }
   }
+
+  const handleAssignTagsToPost = () => {
+    assignTagsToPost({
+      post_id: post.id,
+      ids: selectedTag.map(tag => tag.id)
+    })
+    setOpenTags(false)
+  }
+
+  const tagsNotUsedInPost =
+    post.tags.length > 0
+      ? tags.filter(tag => post.tags.some(pt => pt.tag.id !== tag.id))
+      : tags
 
   return (
     <>
@@ -73,6 +110,18 @@ export function PostWithDetails({ post }: PostWithDetailsProps) {
                 ))
               ) : (
                 <Badge variant="secondary">Nenhuma Tag</Badge>
+              )}
+              {data?.userData.id === post.user.id && (
+                <Badge
+                  className="bg-green-500 hover:bg-green-700 duration-200 hover:cursor-pointer"
+                  variant="outline"
+                  onClick={e => {
+                    e.stopPropagation()
+                    setOpenTags(true)
+                  }}
+                >
+                  +Tags
+                </Badge>
               )}
             </div>
             <div className="mt-2">
@@ -126,6 +175,32 @@ export function PostWithDetails({ post }: PostWithDetailsProps) {
         onOpenChange={setComment}
         postId={post.id}
       />
+      <Dialog open={openTags} onOpenChange={setOpenTags}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-black">Assinar novas Tags</DialogTitle>
+            <DialogDescription>
+              Selecione as novas Tags para este Post
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <FancyMultiSelect
+              tags={tagsNotUsedInPost}
+              selected={selectedTag}
+              setSelected={setSelectedTag}
+            />
+          </div>
+          <DialogFooter>
+            <Button
+              className="bg-green-700 hover:bg-green-800 duration-200 disabled:bg-gray-600"
+              disabled={selectedTag.length === 0}
+              onClick={handleAssignTagsToPost}
+            >
+              Confirmar
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }

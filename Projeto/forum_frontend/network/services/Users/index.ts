@@ -34,8 +34,9 @@ export async function updateUserPicture(
   payload: UpdatePayload<{ file: File }>
 ): Promise<User> {
   const data = new FormData()
-  data.append("file", payload.data.file)
-  const response = await api.patch(`/users/roles/${payload.id}`, payload.data, {
+  data.append("image", payload.data.file)
+
+  const response = await api.patch(`/users/picture/${payload.id}`, data, {
     headers: {
       "Content-Type": "multipart/form-data"
     }
