@@ -11,4 +11,4 @@
 
 ## [Projeto final:](./Projeto/README.md)
 
-Apresente uma breve descrição do seu projeto.
+"How should i do?" é um fórum focado em linguagens de programação e o toolkit que as envolve. Neste sistema, usuários podem trocar conhecimento das mais diversas profundidades a respeito de seus tópicos de interesse através de posts, comentários e reações baseadas no humor :)
